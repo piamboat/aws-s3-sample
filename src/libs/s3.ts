@@ -30,11 +30,11 @@ export const uploadFile = (file: Express.Multer.File) => {
 }
 
 // download a file to s3
-// export const getFileStream = (fileKey) => {
-//     const downloadParams = {
-//         Key: fileKey,
-//         Bucket: bucketName,
-//     }
+export const getFileStream = (fileKey) => {
+    const downloadParams = {
+        Key: fileKey,
+        Bucket: bucketName,
+    }
 
-//     return s3.getObject(downloadParams).createReadStream()
-// }
+    return s3.getObject(downloadParams).createReadStream()
+}
