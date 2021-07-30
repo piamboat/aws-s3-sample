@@ -5,6 +5,9 @@ import { ImageEntity } from './image.entity';
 import { CreateImageDto } from "./dto/create-image.dto";
 import { uploadFile } from "src/libs/S3";
 import { ManagedUpload } from "aws-sdk/clients/s3";
+const fs = require('fs');
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink)
 
 @EntityRepository(ImageEntity)
 export class ImagesRepository extends Repository<ImageEntity> {
@@ -26,6 +29,7 @@ export class ImagesRepository extends Repository<ImageEntity> {
             newImage.image = imageFile
 
             result = await uploadFile(image)
+            await unlinkFile(`upload/${imageFile}`)
             console.log('result: ', result)
             await newImage.save()
         }
