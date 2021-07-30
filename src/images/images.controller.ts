@@ -3,7 +3,6 @@ import { Controller, Post } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ImagesService } from './images.service';
 import { CreateImageDto } from './dto/create-image.dto';
-import { ImageEntity } from './image.entity';
 import { Express } from 'express';
 
 @Controller('images')
@@ -16,7 +15,7 @@ export class ImagesController {
     createImage(
         @UploadedFile() image: Express.Multer.File,
         @Body() createImageDto: CreateImageDto,
-    ): Promise<ImageEntity> {
+    ): Promise<string> {
         return this.imagesService.createImage(createImageDto, image)
     }
 

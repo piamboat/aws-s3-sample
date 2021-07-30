@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ImagesRepository } from './images.repository';
 import { CreateImageDto } from './dto/create-image.dto';
-import { ImageEntity } from './image.entity';
 // import { getFileStream } from "src/libs/S3";
 
 @Injectable()
@@ -15,7 +14,7 @@ export class ImagesService {
     async createImage(
         createImageDto: CreateImageDto,
         image: Express.Multer.File,
-    ): Promise<ImageEntity> {
+    ): Promise<string> {
         return this.imagesRepository.createImage(createImageDto, image)
     }
 
