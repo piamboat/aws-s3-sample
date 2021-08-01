@@ -38,3 +38,14 @@ export const getFileStream = (fileKey) => {
 
     return s3.getObject(downloadParams).createReadStream()
 }
+
+export const getSecureFileUrl = (fileKey) => {
+    const downloadParams = {
+        Key: fileKey,
+        Bucket: bucketName,
+        Expires: 60,
+    }
+
+    const url = s3.getSignedUrl('getObject', downloadParams);
+    return url
+}
