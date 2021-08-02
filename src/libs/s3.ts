@@ -49,3 +49,19 @@ export const getSecureFileUrl = (fileKey) => {
     const url = s3.getSignedUrl('getObject', downloadParams);
     return url
 }
+
+export const deleteFileStream = (fileKey) => {
+    const deleteParams = {
+        Key: fileKey,
+        Bucket: bucketName,
+    }
+
+    s3.deleteObject(deleteParams, (err, data) => {
+      if (err) {
+        console.log('error detected: ', err, err.stack);
+      }
+      else {
+        console.log(`file ${fileKey} has been deleted from s3`);
+      }
+    });
+}

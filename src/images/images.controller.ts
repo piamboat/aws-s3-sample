@@ -1,4 +1,4 @@
-import { Body, Get, Param, Query, Res, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Delete, Get, Param, ParseIntPipe, Query, Res, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Controller, Post } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ImagesService } from './images.service';
@@ -26,5 +26,13 @@ export class ImagesController {
        @Res() res,
    ): Promise<internal.Readable> {
        return this.imagesService.getImageByKey(key, res)
+   }
+
+   @Delete('/:id')
+   deleteImageByKey(
+       @Param('id', ParseIntPipe) id: number,
+       @Body('key') key: string,
+   ): Promise<void> {
+       return this.imagesService.deleteImageByKey(id, key)
    }
 }
