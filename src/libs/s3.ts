@@ -46,7 +46,6 @@ export const generateUploadUrl = async () => {
 
 // direct image url to s3
 export const generateImageUrl = async (fileKey) => {
-    console.log('fileKey: ', fileKey)
     const params = {
         Bucket: directBucketName,
         Key: fileKey,
