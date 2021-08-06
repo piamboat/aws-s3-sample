@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { generateUploadUrl, getSecureFileUrl, generateImageUrl } from '../libs/s3';
+import { generateUploadUrl, generateImageUrl } from '../libs/s3';
 
 @Injectable()
 export class DirectImagesService {
