@@ -52,7 +52,7 @@ export const generateImageUrl = async (fileKey) => {
         Expires: 60,
     }
 
-    const imageUrl = await dS3.getSignedUrlPromise('getObject', params)
+    const imageUrl = await dS3.getSignedUrl('getObject', params)
     return imageUrl
 }
 
